@@ -28,6 +28,11 @@ public class Knight : MonoBehaviour {
         hp.OnCharacterDeath += onDeath;
     }
     void Update() {
+        if (!target.gameObject.activeInHierarchy)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
         if (Vector3.Distance(transform.position, target.position) < 2f) {
             if (NMA.hasPath)
             {
@@ -57,6 +62,8 @@ public class Knight : MonoBehaviour {
         transform.position = pos;
         InvokeRepeating("aquireTarget", 0, 1);
         hp.reset();
+
+        cooldown = false;
     }
     public void die(bool raise_undead) {
         Instantiate(DeathEffectPrefab, new Vector3(transform.position.x, 0, transform.position.z), Quaternion.identity);

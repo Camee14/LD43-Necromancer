@@ -29,17 +29,23 @@ public class Wizard : MonoBehaviour {
     }
     void Update()
     {
+        if (!target.gameObject.activeInHierarchy) {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
         NavMeshHit hit;
-        if (Vector3.Distance(transform.position, target.position) < 50f && !NMA.Raycast(target.position, out hit))
-        {
+        if (Vector3.Distance(transform.position, target.position) < 12f){   
             if (NMA.hasPath)
             {
                 NMA.ResetPath();
             }
+        }
+
+        if(!NMA.Raycast(target.position, out hit)) { 
             if (!cooldown)
             {
                 Transform projectile = Instantiate(FireBall, transform.position, Camera.main.transform.rotation);
-                projectile.GetComponent<Projectile>().setDirection((target.position - transform.position).normalized);
+                projectile.GetComponent<Projectile>().setDirection((new Vector3(target.position.x, 1, target.position.z) - transform.position).normalized);
 
                 cooldown = true;
                 Invoke("attackCooldown", AttackCooldown);
@@ -55,6 +61,8 @@ public class Wizard : MonoBehaviour {
         transform.position = pos;
         InvokeRepeating("aquireTarget", 0, 1);
         hp.reset();
+
+        cooldown = false;
     }
     public void die(bool raise_undead)
     {
