@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameState : MonoBehaviour {
 
@@ -39,5 +40,8 @@ public class GameState : MonoBehaviour {
     void onWaveChanged(int current_wave) {
         wave = current_wave;
     }
-
+    public void restart() {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

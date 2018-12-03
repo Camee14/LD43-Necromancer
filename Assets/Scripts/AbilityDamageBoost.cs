@@ -27,7 +27,7 @@ public class AbilityDamageBoost : MonoBehaviour {
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetButtonDown("AbilityDamageBoost"))
         {
             if (mana.use(ManaCost))
             {

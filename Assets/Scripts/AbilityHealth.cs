@@ -25,7 +25,7 @@ public class AbilityHealth : MonoBehaviour {
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetButtonDown("AbilityHealth"))
         {
             if (mana.use(ManaCost))
             {

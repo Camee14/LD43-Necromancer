@@ -26,7 +26,7 @@ public class AbilityLightning : MonoBehaviour {
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad3))
+        if (Input.GetButtonDown("AbilityLightning"))
         {
             if (mana.use(ManaCost))
             {

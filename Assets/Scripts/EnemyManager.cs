@@ -88,6 +88,8 @@ public class EnemyManager : MonoBehaviour {
         inactive_knights = new List<int>();
         inactive_wizards = new List<int>();
 
+        wave_ongoing = false;
+
         Invoke("startNextWave", 3f);
         InvokeRepeating("waveStartCountdown", 0, 1f);
 
